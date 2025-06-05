@@ -4,6 +4,95 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+
+// === FUNÇÕES RECURSIVAS PARA AS PEÇAS ===
+
+/**
+ * Função recursiva para movimento da Torre
+ * @param casas_restantes: número de casas ainda a serem movidas
+ * @param casa_atual: número da casa atual (para exibição)
+ */
+void mover_torre_recursivo(int casas_restantes, int casa_atual) {
+    // Caso base: se não há mais casas para mover, para a recursão
+    if (casas_restantes <= 0) {
+        return;
+    }
+    
+    // Imprime o movimento atual
+    printf("Casa %d: ", casa_atual);
+    printf("Direita\n");
+    
+    // Chamada recursiva: move para a próxima casa
+    mover_torre_recursivo(casas_restantes - 1, casa_atual + 1);
+}
+
+/**
+ * Função recursiva para movimento do Bispo
+ * @param casas_restantes: número de casas ainda a serem movidas
+ * @param casa_atual: número da casa atual (para exibição)
+ */
+void mover_bispo_recursivo(int casas_restantes, int casa_atual) {
+    // Caso base: se não há mais casas para mover, para a recursão
+    if (casas_restantes <= 0) {
+        return;
+    }
+    
+    // Imprime o movimento diagonal atual
+    printf("Casa %d: ", casa_atual);
+    printf("Cima, Direita\n");
+    
+    // Chamada recursiva: move para a próxima casa diagonal
+    mover_bispo_recursivo(casas_restantes - 1, casa_atual + 1);
+}
+
+/**
+ * Função recursiva para movimento da Rainha
+ * @param casas_restantes: número de casas ainda a serem movidas
+ * @param casa_atual: número da casa atual (para exibição)
+ */
+void mover_rainha_recursivo(int casas_restantes, int casa_atual) {
+    // Caso base: se não há mais casas para mover, para a recursão
+    if (casas_restantes <= 0) {
+        return;
+    }
+    
+    // Imprime o movimento atual
+    printf("Casa %d: ", casa_atual);
+    printf("Esquerda\n");
+    
+    // Chamada recursiva: move para a próxima casa
+    mover_rainha_recursivo(casas_restantes - 1, casa_atual + 1);
+}
+
+/**
+ * Função para movimento do Bispo com loops aninhados
+ * Loop externo: movimento vertical
+ * Loop interno: movimento horizontal
+ */
+void mover_bispo_loops_aninhados() {
+    int casas_verticais = 5;    // Número de movimentos verticais
+    int casas_horizontais = 1;  // Para cada vertical, 1 horizontal (diagonal)
+    int casa_total = 1;         // Contador total de casas
+    
+    printf("=== BISPO COM LOOPS ANINHADOS ===\n");
+    printf("Loop externo: movimento vertical\n");
+    printf("Loop interno: movimento horizontal\n\n");
+    
+    // Loop externo - controla movimento vertical (5 casas)
+    for (int vertical = 1; vertical <= casas_verticais; vertical++) {
+        printf("--- Movimento vertical %d ---\n", vertical);
+        
+        // Loop interno - para cada movimento vertical, faz o horizontal
+        for (int horizontal = 1; horizontal <= casas_horizontais; horizontal++) {
+            printf("Casa %d: ", casa_total);
+            printf("Cima, Direita\n");  // Movimento diagonal
+            casa_total++;
+        }
+    }
+    
+    printf("\n✓ Bispo completou movimento com loops aninhados!\n\n");
+}
+
 int main() {
     // === DECLARAÇÃO DAS VARIÁVEIS ===
     int casas_torre = 5;        // Torre: 5 casas para a direita
@@ -14,7 +103,6 @@ int main() {
     int movimento_cavalo_vertical = 2;    // Duas casas para cima
     int movimento_cavalo_horizontal = 1;  // Uma casa para a direita
     int etapas_movimento = 2;             // Duas etapas: vertical + horizontal
-    
     
     // === APRESENTAÇÃO DO PROGRAMA ===
     printf("╔══════════════════════════════════════════════════════════╗\n");
